@@ -1,0 +1,15 @@
+// Computer.hdl
+// Capstone - Nand to Tetris I
+// Lakshay Roll No 2501730367
+//
+// ROM32K holds the program, CPU executes it, Memory is RAM + Screen + Keyboard.
+
+CHIP Computer {
+    IN reset;
+
+    PARTS:
+    ROM32K(address=pc, out=instruction);
+    CPU(inM=memOut, instruction=instruction, reset=reset,
+        outM=outM, writeM=writeM, addressM=addressM, pc=pc);
+    Memory(in=outM, load=writeM, address=addressM, out=memOut);
+}
